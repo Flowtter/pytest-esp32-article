@@ -1,0 +1,14 @@
+name: Run Pytest
+
+on: [push]
+
+jobs:
+  pytest:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+    - uses: actions/checkout@v2
+    - run: pip install esp32-machine-emulator
+    - run: pytest python-led-switcher
